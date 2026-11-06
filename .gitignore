@@ -1,0 +1,19 @@
+# Each line is a pattern; matching files are invisible to Git.
+# Comments must be on their OWN line: in .gitignore a "#" after a pattern
+# becomes part of the pattern, and the rule silently stops working.
+
+# Your virtual environment: big, Mac-specific, rebuildable
+.venv/
+# Temporary build folder from pip install .
+build/
+# Compiled files Python makes automatically
+__pycache__/
+*.pyc
+# Build info pip creates when you install the project
+*.egg-info/
+# NEXT WEEK your GitHub token goes in .env. Never commit it.
+.env
+# Finder's hidden folder-settings file
+.DS_Store
+# Created by tests (project step 3)
+.pytest_cache/

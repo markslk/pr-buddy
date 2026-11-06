@@ -1,0 +1,17 @@
+[build-system]                       # which tool turns your code into an installable package
+requires = ["setuptools>=68"]        # setuptools is the standard one
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pr-buddy"                    # the package name pip knows it by
+version = "0.1.0"                    # 0.x = early, still changing
+description = "AI-assisted pull request reviewer (learning project)"
+readme = "README.md"
+requires-python = ">=3.10"           # refuse to install on older Python
+dependencies = []                    # libraries you need; empty for now (requests comes next week)
+
+[project.scripts]
+pr-buddy = "pr_buddy.cli:main"       # typing `pr-buddy` runs the function main() in src/pr_buddy/cli.py
+
+[tool.setuptools.packages.find]
+where = ["src"]                      # look for packages inside src/
