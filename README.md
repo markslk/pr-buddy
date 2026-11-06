@@ -14,7 +14,9 @@ pip install -e .
 ## Usage
 
 ```bash
-pr-buddy hello
+pr-buddy hello               # Hello, world! pr-buddy is ready.
+pr-buddy hello --name Mark   # Hello, Mark! pr-buddy is ready.
+pr-buddy --version           # pr-buddy 0.1.0
 ```
 
 ## Roadmap
