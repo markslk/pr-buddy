@@ -3,6 +3,7 @@ import argparse  # standard library module for reading command-line options
 import sys       # gives access to sys.exit (the program's exit code)
 
 from pr_buddy import __version__  # the version from __init__.py
+from pr_buddy.github import get_pr, get_diff
 
 
 def build_parser() -> argparse.ArgumentParser:   # "-> X" is a type hint: this function returns X
@@ -17,6 +18,9 @@ def build_parser() -> argparse.ArgumentParser:   # "-> X" is a type hint: this f
     # required=True: running plain "pr-buddy" is an error
     hello = subcommands.add_parser("hello", help="check that pr-buddy is installed")
     hello.add_argument("--name", default="world", help="who to greet")
+    pr = subcommands.add_parser("pr", help="show a pull request and its diff")
+    pr.add_argument("number", type=int, help="the pull request number, like 1")
+    pr.add_argument("--repo", default="markslk/pr-buddy", help="which repo, as owner/name (default: %(default)s)")
     return parser
 
 
@@ -26,6 +30,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)   # reads the options; on bad input prints an error and exits 2
     if args.command == "hello":
         print(f"Hello, {args.name}! pr-buddy is ready.")
+    elif args.command == "pr":
+        pr = get_pr(args.repo, args.number)
+        print(f"PR #{args.number}: {pr['title']}")
+        print(f"Author: {pr['user']['login']}")
+        print(f"State: {pr['state']}")
+        print(f"Files changed: {pr['changed_files']}")
+        print()
+        print(get_diff(args.repo, args.number))
     return 0                         # 0 = success, exactly like exit codes in Bash
 
 
