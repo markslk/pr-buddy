@@ -8,7 +8,7 @@ version = "0.1.0"                    # 0.x = early, still changing
 description = "AI-assisted pull request reviewer (learning project)"
 readme = "README.md"
 requires-python = ">=3.10"           # refuse to install on older Python
-dependencies = []                    # libraries you need; empty for now (requests comes next week)
+dependencies = ["requests>=2.32"]    # libraries pip installs with your project
 
 [project.scripts]
 pr-buddy = "pr_buddy.cli:main"       # typing `pr-buddy` runs the function main() in src/pr_buddy/cli.py
